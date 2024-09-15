@@ -1,0 +1,107 @@
+[gd_scene load_steps=2 format=3 uid="uid://dbj1co43av26s"]
+
+[ext_resource type="Material" uid="uid://57v5du2uqclu" path="res://materials/white.tres" id="1_207hh"]
+
+[node name="PlayerCharacter" type="Node3D"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+visible = false
+size = Vector3(1, 1.8, 0.5)
+material = ExtResource("1_207hh")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.57222, -0.373846)
+visible = false
+size = Vector3(0.260742, 0.190552, 0.505371)
+material = ExtResource("1_207hh")
+
+[node name="CameraMarker" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.835392, 0)
+
+[node name="Visuals" type="Node3D" parent="."]
+
+[node name="Body" type="Node3D" parent="Visuals"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Visuals/Body"]
+transform = Transform3D(0.999992, 0, 0, 0, 0.999992, 0, 0, 0, 1, -0.0092048, 0.163975, 0)
+size = Vector3(0.204, 0.354, 0.1)
+
+[node name="Neck" type="Node3D" parent="Visuals/Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.339365, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Visuals/Body/Neck"]
+transform = Transform3D(0.999982, 0, 0, 0, 0.999982, 0, 0, 0, 1, -0.0092048, 0.0333477, 0)
+size = Vector3(0.0820313, 0.0766597, 0.1)
+
+[node name="Head" type="Node3D" parent="Visuals/Body/Neck"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0841382, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Visuals/Body/Neck/Head"]
+transform = Transform3D(0.999977, 0, 0, 0, 0.999977, 0, 0, 0, 1, -0.0092048, 0.0854709, 0)
+size = Vector3(0.133789, 0.180908, 0.141602)
+
+[node name="ArmLeft" type="Node3D" parent="Visuals/Body"]
+transform = Transform3D(0.987309, 0.158813, 0, -0.158813, 0.987309, 0, 0, 0, 1, -0.13462, 0.339365, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Visuals/Body/ArmLeft"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.106587, 0)
+size = Vector3(0.07, 0.216, 0.07)
+
+[node name="ArmLeft2" type="Node3D" parent="Visuals/Body/ArmLeft"]
+transform = Transform3D(0.992984, -0.118248, 0, 0.118248, 0.992984, 0, 0, 0, 1, 0.00422019, -0.216935, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Visuals/Body/ArmLeft/ArmLeft2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.111173, 0)
+size = Vector3(0.07, 0.226, 0.07)
+
+[node name="ArmRight" type="Node3D" parent="Visuals/Body"]
+transform = Transform3D(0.990033, -0.140832, 0, 0.140832, 0.990033, 0, 0, 0, 1, 0.109512, 0.339365, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Visuals/Body/ArmRight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.106587, 0)
+size = Vector3(0.07, 0.216, 0.07)
+
+[node name="ArmRight2" type="Node3D" parent="Visuals/Body/ArmRight"]
+transform = Transform3D(0.995073, 0.0991461, 0, -0.0991461, 0.995073, 0, 0, 0, 1, 0.00422019, -0.216935, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Visuals/Body/ArmRight/ArmRight2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.111173, 0)
+size = Vector3(0.07, 0.226, 0.07)
+
+[node name="LegLeft" type="Node3D" parent="Visuals/Body"]
+transform = Transform3D(1, 0, 0, 0, 0.993774, -0.111417, 0, 0.111417, 0.993774, -0.0662704, -0.00827968, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Visuals/Body/LegLeft"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.129362, 0)
+size = Vector3(0.1, 0.262, 0.1)
+
+[node name="LegLeft2" type="Node3D" parent="Visuals/Body/LegLeft"]
+transform = Transform3D(1, 0, 0, 0, 0.990913, 0.134505, 0, -0.134505, 0.990913, 0, -0.246602, -1.49012e-08)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Visuals/Body/LegLeft/LegLeft2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.153218, 0)
+size = Vector3(0.1, 0.309711, 0.1)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Visuals/Body/LegLeft/LegLeft2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.278497, -0.0719819)
+size = Vector3(0.1, 0.0591523, 0.1)
+
+[node name="LegRight" type="Node3D" parent="Visuals/Body"]
+transform = Transform3D(1, 0, 0, 0, 0.993774, -0.111417, 0, 0.111417, 0.993774, 0.044616, -0.00827968, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Visuals/Body/LegRight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.129362, 0)
+size = Vector3(0.1, 0.262, 0.1)
+
+[node name="LegRight2" type="Node3D" parent="Visuals/Body/LegRight"]
+transform = Transform3D(1, 0, 0, 0, 0.990913, 0.134505, 0, -0.134505, 0.990913, 0, -0.246602, -1.49012e-08)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Visuals/Body/LegRight/LegRight2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.153218, 0)
+size = Vector3(0.1, 0.309711, 0.1)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Visuals/Body/LegRight/LegRight2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.278497, -0.0719819)
+size = Vector3(0.1, 0.0591523, 0.1)

@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://ci3coi1qdw4ep"]
+
+[ext_resource type="Material" uid="uid://bgi443xe4qbbv" path="res://materials/cyan.tres" id="1_fhyof"]
+
+[node name="SwingThing" type="Node3D"]
+
+[node name="PivotStart" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.102449, 0)
+
+[node name="Construct" type="Node3D" parent="PivotStart"]
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="PivotStart/Construct"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, -0.902, 0)
+size = Vector3(0.03, 2, 0.03)
+material = ExtResource("1_fhyof")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="PivotStart/Construct"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, -0.902, 0)
+size = Vector3(0.03, 2, 0.03)
+material = ExtResource("1_fhyof")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="PivotStart/Construct"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.89225, 0)
+size = Vector3(0.8, 0.05, 0.3)
+material = ExtResource("1_fhyof")
+
+[node name="Marker3D" type="Marker3D" parent="PivotStart/Construct"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.87181, 0)

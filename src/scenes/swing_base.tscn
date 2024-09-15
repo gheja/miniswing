@@ -1,0 +1,80 @@
+[gd_scene load_steps=2 format=3 uid="uid://dgabgm6m3lu2f"]
+
+[ext_resource type="Material" uid="uid://c5r2hk24do4ty" path="res://materials/bright_purple.tres" id="1_6bhic"]
+
+[node name="SwingBase" type="Node3D"]
+
+[node name="Rod1" type="CSGBox3D" parent="."]
+transform = Transform3D(-1, 4.37114e-08, -7.57103e-08, 0, 0.866025, 0.5, 8.74228e-08, 0.5, -0.866025, 0.920679, 1.35216, -0.578494)
+size = Vector3(0.1, 2.91309, 0.1)
+material = ExtResource("1_6bhic")
+
+[node name="Rod2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 1.0379, 1.35216, 0.575025)
+size = Vector3(0.1, 2.91309, 0.1)
+material = ExtResource("1_6bhic")
+
+[node name="Rod3" type="CSGBox3D" parent="."]
+transform = Transform3D(-1, 4.37114e-08, -7.57103e-08, 0, 0.866025, 0.5, 8.74228e-08, 0.5, -0.866025, -1.07932, 1.35216, -0.578494)
+size = Vector3(0.1, 2.91309, 0.1)
+material = ExtResource("1_6bhic")
+
+[node name="Rod4" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, -1.19533, 1.35216, 0.575025)
+size = Vector3(0.1, 2.91309, 0.1)
+material = ExtResource("1_6bhic")
+
+[node name="Rod5" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, 0, -0.707107, -3.09086e-08, 0.707107, 0.707107, 3.09086e-08, 0.707107, -0.0880127, 2.58341, 0)
+size = Vector3(0.1, 2.3894, 0.1)
+material = ExtResource("1_6bhic")
+
+[node name="Base1" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.916168, -0.109048, -1.29482)
+size = Vector3(0.3, 0.3, 0.3)
+material = ExtResource("1_6bhic")
+
+[node name="BaseRod1" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.916168, -0.0387727, -1.29482)
+size = Vector3(0.05, 0.3, 0.05)
+material = ExtResource("1_6bhic")
+
+[node name="Base4" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.08732, -0.109048, -1.29482)
+size = Vector3(0.3, 0.3, 0.3)
+material = ExtResource("1_6bhic")
+
+[node name="BaseRod4" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.08732, -0.0387727, -1.29482)
+size = Vector3(0.05, 0.3, 0.05)
+material = ExtResource("1_6bhic")
+
+[node name="Base2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.03922, -0.109048, 1.31819)
+size = Vector3(0.3, 0.3, 0.3)
+material = ExtResource("1_6bhic")
+
+[node name="BaseRod2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.03922, -0.0387727, 1.31819)
+size = Vector3(0.05, 0.3, 0.05)
+material = ExtResource("1_6bhic")
+
+[node name="Base3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.195, -0.109048, 1.31819)
+size = Vector3(0.3, 0.3, 0.3)
+material = ExtResource("1_6bhic")
+
+[node name="BaseRod3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.195, -0.0387727, 1.31819)
+size = Vector3(0.05, 0.3, 0.05)
+material = ExtResource("1_6bhic")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 2.45787, -0.000569522)
+size = Vector3(0.05, 0.15, 0.15)
+material = ExtResource("1_6bhic")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 2.45787, 0)
+size = Vector3(0.05, 0.15, 0.15)
+material = ExtResource("1_6bhic")
