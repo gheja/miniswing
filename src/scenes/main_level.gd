@@ -25,6 +25,10 @@ func _process(delta: float) -> void:
 	height = clamp(height, MIN_HEIGHT, MAX_HEIGHT)
 	
 	$LevelObjects/SwingThing.rotation_degrees.x = cos(t * SWING_MULTIPLIER) * height
+	if $LevelObjects/SwingThing.rotation_degrees.x > 0:
+		$LevelObjects/PlayerCharacter/AnimationPlayer.play("sit_forward")
+	else:
+		$LevelObjects/PlayerCharacter/AnimationPlayer.play("sit_backward")
 	$LevelObjects/PlayerCharacter.global_position = $LevelObjects/SwingThing/PivotStart/Construct/Marker3D.global_position
 	$LevelObjects/PlayerCharacter.rotation_degrees.x = $LevelObjects/SwingThing.rotation_degrees.x
 	
