@@ -94,6 +94,25 @@ func process_swinging(delta: float):
 	player_character.global_position = $LevelObjects/SwingThing/PivotStart/Construct/Marker3D.global_position
 	
 	# print([a, last_a, max_angle, target_max_angle, next_max_angle, sign_a ])
+	
+	process_audio()
+
+func process_audio():
+	if max_angle < 10.0:
+		return
+	
+	var pitch = (max_angle - 10.0) / (MAX_MAX_ANGLE - 10.0)
+	
+	pitch = 0.6 + pitch * 0.6
+	
+	# swinging forward
+	if last_a + 10 < 0 and a + 10 > 0:
+		AudioManager.play_sound(1, pitch, pitch)
+		print(pitch)
+	
+	# swinging backward
+	if last_a - 10 > 0 and a - 10 < 0:
+		AudioManager.play_sound(0, pitch * 0.8, pitch * 0.8)
 
 func process_falling(delta: float):
 	if Input.get_action_strength("action_go") > 0.5:
@@ -101,8 +120,16 @@ func process_falling(delta: float):
 	
 	if Input.is_action_just_released("action_go"):
 		if press_length < 0.15:
-			player_character.correct_course()
-		
+			if player_character.target_rotation.x != 0.0:
+				player_character.correct_course()
+				
+				if player_character.target_rotation.x == 0.0:
+					AudioManager.play_sound(3)
+				else:
+					var pitch = clamp(abs(player_character.target_rotation.x), 0, 90) / 90
+					pitch = 0.4 + pitch * 0.6
+					AudioManager.play_sound(2, pitch, pitch)
+			
 		press_length = 0.0
 
 func on_player_success():
@@ -111,6 +138,8 @@ func on_player_success():
 	Engine.time_scale = 1.0
 	$DirectionalLight3D2.light_color = Color(0, 1.0, 0)
 	player_character.set_target_anim(player_character.ANIM_HAPPY)
+	
+	AudioManager.play_sound(4)
 
 func on_player_fail():
 	state = STATE_FAIL
@@ -118,6 +147,8 @@ func on_player_fail():
 	Engine.time_scale = 1.0
 	$DirectionalLight3D2.light_color = Color(1.0, 0, 0)
 	player_character.set_target_anim(player_character.ANIM_FACEPLANT)
+	
+	AudioManager.play_sound(5)
 
 func _on_timer_timeout() -> void:
 	input_enabled = true
