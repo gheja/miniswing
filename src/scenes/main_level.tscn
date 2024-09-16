@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dx6255pcyc4ck"]
+[gd_scene load_steps=11 format=3 uid="uid://dx6255pcyc4ck"]
 
 [ext_resource type="Environment" uid="uid://tgin6csd0gl4" path="res://environment_1.tres" id="1_nu1f5"]
 [ext_resource type="Script" path="res://scenes/main_level.gd" id="1_qe7qy"]
@@ -6,6 +6,95 @@
 [ext_resource type="PackedScene" uid="uid://dgabgm6m3lu2f" path="res://scenes/swing_base.tscn" id="3_f0ivg"]
 [ext_resource type="PackedScene" uid="uid://d3wtpg0525k43" path="res://scenes/ground.tscn" id="4_ieank"]
 [ext_resource type="PackedScene" uid="uid://ci3coi1qdw4ep" path="res://scenes/swing_thing.tscn" id="5_72jvn"]
+
+[sub_resource type="Animation" id="Animation_2exfu"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CameraContainer:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CameraContainer:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_rhdhd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CameraContainer:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CameraContainer:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_8hyco"]
+resource_name = "finish"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CameraContainer:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4.96667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.815732, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CameraContainer:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 4.96667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -1.48761, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7ijgs"]
+_data = {
+"RESET": SubResource("Animation_rhdhd"),
+"finish": SubResource("Animation_8hyco"),
+"idle": SubResource("Animation_2exfu")
+}
 
 [node name="MainLevel" type="Node3D"]
 script = ExtResource("1_qe7qy")
@@ -25,9 +114,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.44563, 0)
 [node name="PlayerCharacter" parent="LevelObjects" instance=ExtResource("2_7cews")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.476462, 0)
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-0.5, -0.433013, 0.75, -7.45058e-09, 0.866025, 0.5, -0.866025, 0.25, -0.433013, 2.84605, 2.61969, -2.48212)
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.258819, -0.683013, 0.683013, 0, 0.707107, 0.707107, -0.965926, 0.183013, -0.183013, 9, 12, 0)
 
@@ -38,5 +124,15 @@ light_energy = 0.0
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
 autostart = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_7ijgs")
+}
+
+[node name="CameraContainer" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="CameraContainer"]
+transform = Transform3D(-0.5, -0.433013, 0.75, -7.45058e-09, 0.866025, 0.5, -0.866025, 0.25, -0.433013, 2.84605, 2.61969, -2.48212)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

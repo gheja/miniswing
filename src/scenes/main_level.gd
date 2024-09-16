@@ -55,7 +55,7 @@ func _process(delta: float) -> void:
 	elif state == STATE_FALLING:
 		process_falling(delta)
 	
-	$Camera3D.look_at($LevelObjects/PlayerCharacter/CameraMarker.global_position)
+	$CameraContainer/Camera3D.look_at($LevelObjects/PlayerCharacter/CameraMarker.global_position)
 	
 	last_a = a
 
@@ -82,6 +82,8 @@ func process_swinging(delta: float):
 			Engine.time_scale = 0.33
 			
 			$DirectionalLight3D2.light_energy = 1.0
+			
+			$AnimationPlayer.play("finish")
 			
 			Signals.emit_signal("player_jumped")
 		

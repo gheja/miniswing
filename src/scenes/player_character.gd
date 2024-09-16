@@ -54,7 +54,7 @@ func correct_course():
 	elif target_rotation.x > 0:
 		target_rotation.x -= CORRECTION_AMOUNT
 	
-	print("correct: ", target_rotation)
+	# print("correct: ", target_rotation)
 
 func _process(delta: float) -> void:
 	for i in range(0, anim_weight_targets.size()):
