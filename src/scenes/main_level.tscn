@@ -36,6 +36,10 @@ transform = Transform3D(1, 0, 0, 0, 0.993773, -0.111417, 0, 0.111417, 0.993773, 
 [node name="LegRight" parent="LevelObjects/PlayerCharacter/Visuals/Body" index="5"]
 transform = Transform3D(1, 0, 0, 0, 0.993774, -0.111417, 0, 0.111417, 0.993774, 0.044616, -0.00827968, 0)
 
+[node name="AnimationTree" parent="LevelObjects/PlayerCharacter" index="5"]
+"parameters/Blend2 2/blend_amount" = 0
+"parameters/Blend2 3/blend_amount" = 0
+
 [node name="SwingBase" parent="LevelObjects" instance=ExtResource("3_f0ivg")]
 
 [node name="Ground" parent="LevelObjects" instance=ExtResource("4_ieank")]
