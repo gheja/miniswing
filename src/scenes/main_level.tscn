@@ -18,6 +18,9 @@ environment = ExtResource("1_nu1f5")
 [node name="PlayerCharacter" parent="LevelObjects" instance=ExtResource("2_7cews")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.476462, 0)
 
+[node name="ArmLeft" parent="LevelObjects/PlayerCharacter/Visuals/Body" index="2"]
+transform = Transform3D(0.987309, 0.158813, 0, -0.158813, 0.987309, 0, 0, 0, 1, -0.13462, 0.339364, 0)
+
 [node name="ArmLeft2" parent="LevelObjects/PlayerCharacter/Visuals/Body/ArmLeft" index="1"]
 transform = Transform3D(0.992984, -0.118248, 0, 0.118248, 0.992984, 0, 0, 0, 1, 0.00422019, -0.216935, 0)
 
