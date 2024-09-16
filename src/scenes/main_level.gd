@@ -27,14 +27,12 @@ func _ready() -> void:
 
 var a = 0.0
 var last_a = 0
+var press_length = 0
 
 func _process(delta: float) -> void:
-	var sign_a
-	
-	t += delta
+	t += delta * 2
 	
 	a = cos(t) * max_angle
-	sign_a = sign(a - last_a)
 	
 	max_angle = lerp(max_angle, target_max_angle, 0.0035)
 	
@@ -46,15 +44,36 @@ func _process(delta: float) -> void:
 	
 	$LevelObjects/SwingThing.rotation_degrees.x = a
 	
+	if state == STATE_SWINGING:
+		process_swinging(delta)
+	elif state == STATE_FALLING:
+		pass
+	
+	last_a = a
+
+func process_swinging(delta: float):
+	var sign_a = sign(a - last_a)
+
 	if Input.get_action_strength("action_go") > 0.5:
 		next_max_angle += HEIGHT_INCREASE_PER_SEC * delta * sign_a
 		player_character.set_target_anim(player_character.ANIM_SIT_FORWARD)
-		# $LevelObjects/PlayerCharacter/AnimationPlayer.play("sit_forward")
+		press_length += delta
 	else:
 		player_character.set_target_anim(player_character.ANIM_SIT_BACKWARD)
-		# $LevelObjects/PlayerCharacter/AnimationPlayer.play("sit_backward")
 	
-	# player_character.set_target_anim(player_character.ANIM_FALLING)
+	if Input.is_action_just_released("action_go"):
+		if press_length < 0.15:
+			player_character.set_target_anim(player_character.ANIM_FALLING)
+			player_character.start_falling()
+			state = STATE_FALLING
+			
+			# cheating: the next time the swing will not go that high
+			next_max_angle *= 0.75
+			
+			# some bullett time to give a bit more time to react
+			Engine.time_scale = 0.33
+		
+		press_length = 0.0
 	
 	player_character.global_position = $LevelObjects/SwingThing/PivotStart/Construct/Marker3D.global_position
 	player_character.rotation_degrees.x = $LevelObjects/SwingThing.rotation_degrees.x
@@ -62,5 +81,3 @@ func _process(delta: float) -> void:
 	$Camera3D.look_at($LevelObjects/PlayerCharacter/CameraMarker.global_position)
 	
 	# print([a, last_a, max_angle, target_max_angle, next_max_angle, sign_a ])
-	
-	last_a = a
