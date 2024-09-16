@@ -1,5 +1,6 @@
-[gd_scene load_steps=17 format=3 uid="uid://dbj1co43av26s"]
+[gd_scene load_steps=18 format=3 uid="uid://dbj1co43av26s"]
 
+[ext_resource type="Script" path="res://scenes/player_character.gd" id="1_6xs6r"]
 [ext_resource type="Material" uid="uid://57v5du2uqclu" path="res://materials/white.tres" id="1_207hh"]
 
 [sub_resource type="Animation" id="Animation_yhciw"]
@@ -848,7 +849,7 @@ animation = &"sit_backward"
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_j288u"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_6deik"]
-graph_offset = Vector2(-18.5636, -18.5091)
+graph_offset = Vector2(-179.515, -10.1083)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_d0bsl")
 nodes/Animation/position = Vector2(60, 60)
 "nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_g6vyf")
@@ -864,9 +865,10 @@ nodes/Blend2/position = Vector2(240, 60)
 "nodes/Blend2 3/node" = SubResource("AnimationNodeBlend2_l1vpd")
 "nodes/Blend2 3/position" = Vector2(920, 60)
 nodes/output/position = Vector2(1140, 20)
-node_connections = [&"Blend2", 0, &"Animation", &"Blend2", 1, &"Animation 2", &"Blend2 2", 0, &"Blend2", &"Blend2 2", 1, &"Animation 3", &"Blend2 3", 0, &"Blend2 2", &"Blend2 3", 1, &"Animation 4"]
+node_connections = [&"Blend2", 0, &"Animation", &"Blend2", 1, &"Animation 2", &"Blend2 2", 0, &"Blend2", &"Blend2 2", 1, &"Animation 3", &"Blend2 3", 0, &"Blend2 2", &"Blend2 3", 1, &"Animation 4", &"output", 0, &"Blend2 3"]
 
 [node name="PlayerCharacter" type="Node3D"]
+script = ExtResource("1_6xs6r")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
@@ -980,5 +982,5 @@ autoplay = "faceplant"
 tree_root = SubResource("AnimationNodeBlendTree_6deik")
 anim_player = NodePath("../AnimationPlayer")
 parameters/Blend2/blend_amount = 0.0
-"parameters/Blend2 2/blend_amount" = 1.0
-"parameters/Blend2 3/blend_amount" = 1.0
+"parameters/Blend2 2/blend_amount" = 0.0
+"parameters/Blend2 3/blend_amount" = 0.0

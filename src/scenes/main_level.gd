@@ -1,5 +1,12 @@
 extends Node3D
 
+const STATE_SWINGING = 0
+const STATE_FALLING = 1
+const STATE_FAIL = 2
+const STATE_SUCCESS = 3
+
+@onready var player_character = $LevelObjects/PlayerCharacter
+
 const SLOW_DOWN_AMOUNT_PER_SEC = 0.2
 const HEIGHT_INCREASE_PER_SEC = 50.0
 const SWING_MULTIPLIER = 1.5
@@ -10,6 +17,8 @@ var t = -10.0
 var max_angle = 100.0
 var next_max_angle
 var target_max_angle
+
+var state = STATE_SWINGING
 
 func _ready() -> void:
 	max_angle = 50.0
@@ -39,12 +48,16 @@ func _process(delta: float) -> void:
 	
 	if Input.get_action_strength("action_go") > 0.5:
 		next_max_angle += HEIGHT_INCREASE_PER_SEC * delta * sign_a
-		$LevelObjects/PlayerCharacter/AnimationPlayer.play("sit_forward")
+		player_character.set_target_anim(player_character.ANIM_SIT_FORWARD)
+		# $LevelObjects/PlayerCharacter/AnimationPlayer.play("sit_forward")
 	else:
-		$LevelObjects/PlayerCharacter/AnimationPlayer.play("sit_backward")
+		player_character.set_target_anim(player_character.ANIM_SIT_BACKWARD)
+		# $LevelObjects/PlayerCharacter/AnimationPlayer.play("sit_backward")
 	
-	$LevelObjects/PlayerCharacter.global_position = $LevelObjects/SwingThing/PivotStart/Construct/Marker3D.global_position
-	$LevelObjects/PlayerCharacter.rotation_degrees.x = $LevelObjects/SwingThing.rotation_degrees.x
+	# player_character.set_target_anim(player_character.ANIM_FALLING)
+	
+	player_character.global_position = $LevelObjects/SwingThing/PivotStart/Construct/Marker3D.global_position
+	player_character.rotation_degrees.x = $LevelObjects/SwingThing.rotation_degrees.x
 	
 	$Camera3D.look_at($LevelObjects/PlayerCharacter/CameraMarker.global_position)
 	
