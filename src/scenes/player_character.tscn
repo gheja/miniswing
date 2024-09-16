@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dbj1co43av26s"]
+[gd_scene load_steps=17 format=3 uid="uid://dbj1co43av26s"]
 
 [ext_resource type="Material" uid="uid://57v5du2uqclu" path="res://materials/white.tres" id="1_207hh"]
 
@@ -832,21 +832,39 @@ _data = {
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_g6vyf"]
 animation = &"sit_forward"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_x8f0j"]
+animation = &"falling"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2kuov"]
+animation = &"faceplant"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_d0bsl"]
 animation = &"sit_backward"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_06m3k"]
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_l1vpd"]
 
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_j288u"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_6deik"]
 graph_offset = Vector2(-18.5636, -18.5091)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_d0bsl")
-nodes/Animation/position = Vector2(60, 80)
+nodes/Animation/position = Vector2(60, 60)
 "nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_g6vyf")
 "nodes/Animation 2/position" = Vector2(60, 220)
+"nodes/Animation 3/node" = SubResource("AnimationNodeAnimation_x8f0j")
+"nodes/Animation 3/position" = Vector2(420, 220)
+"nodes/Animation 4/node" = SubResource("AnimationNodeAnimation_2kuov")
+"nodes/Animation 4/position" = Vector2(760, 220)
 nodes/Blend2/node = SubResource("AnimationNodeBlend2_j288u")
-nodes/Blend2/position = Vector2(397, 94)
-nodes/output/position = Vector2(660, 100)
-node_connections = [&"Blend2", 0, &"Animation", &"Blend2", 1, &"Animation 2"]
+nodes/Blend2/position = Vector2(240, 60)
+"nodes/Blend2 2/node" = SubResource("AnimationNodeBlend2_06m3k")
+"nodes/Blend2 2/position" = Vector2(580, 60)
+"nodes/Blend2 3/node" = SubResource("AnimationNodeBlend2_l1vpd")
+"nodes/Blend2 3/position" = Vector2(920, 60)
+nodes/output/position = Vector2(1140, 20)
+node_connections = [&"Blend2", 0, &"Animation", &"Blend2", 1, &"Animation 2", &"Blend2 2", 0, &"Blend2", &"Blend2 2", 1, &"Animation 3", &"Blend2 3", 0, &"Blend2 2", &"Blend2 3", 1, &"Animation 4"]
 
 [node name="PlayerCharacter" type="Node3D"]
 
@@ -962,3 +980,5 @@ autoplay = "faceplant"
 tree_root = SubResource("AnimationNodeBlendTree_6deik")
 anim_player = NodePath("../AnimationPlayer")
 parameters/Blend2/blend_amount = 0.0
+"parameters/Blend2 2/blend_amount" = 1.0
+"parameters/Blend2 3/blend_amount" = 1.0
