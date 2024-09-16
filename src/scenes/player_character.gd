@@ -60,8 +60,6 @@ func _process(delta: float) -> void:
 	for i in range(0, anim_weight_targets.size()):
 		anim_weights[i] = lerp(anim_weights[i], anim_weight_targets[i], 0.1)
 	
-	rotation_degrees = lerp(rotation_degrees, target_rotation, 0.2)
-	
 	animation_tree.set("parameters/Blend2/blend_amount", anim_weights[1])
 	animation_tree.set("parameters/Blend2 2/blend_amount", anim_weights[2])
 	animation_tree.set("parameters/Blend2 3/blend_amount", anim_weights[3])
@@ -83,6 +81,8 @@ func process_swinging(delta: float):
 	max_height = $HeightMeasurementPoint.global_position.y
 
 func process_free(delta: float):
+	rotation_degrees = lerp(rotation_degrees, target_rotation, 0.2)
+	
 	if max_height < $HeightMeasurementPoint.global_position.y:
 		max_height = $HeightMeasurementPoint.global_position.y
 	

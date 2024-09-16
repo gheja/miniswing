@@ -134,5 +134,6 @@ libraries = {
 
 [node name="Camera3D" type="Camera3D" parent="CameraContainer"]
 transform = Transform3D(-0.5, -0.433013, 0.75, -7.45058e-09, 0.866025, 0.5, -0.866025, 0.25, -0.433013, 2.84605, 2.61969, -2.48212)
+current = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

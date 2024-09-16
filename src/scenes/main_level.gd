@@ -61,7 +61,9 @@ func _process(delta: float) -> void:
 
 func process_swinging(delta: float):
 	var sign_a = sign(a - last_a)
-
+	
+	player_character.rotation_degrees.x = $LevelObjects/SwingThing.rotation_degrees.x
+	
 	if input_enabled and Input.get_action_strength("action_go") > 0.5:
 		next_max_angle += HEIGHT_INCREASE_PER_SEC * delta * sign_a
 		player_character.set_target_anim(player_character.ANIM_SIT_FORWARD)
@@ -90,7 +92,6 @@ func process_swinging(delta: float):
 		press_length = 0.0
 	
 	player_character.global_position = $LevelObjects/SwingThing/PivotStart/Construct/Marker3D.global_position
-	player_character.rotation_degrees.x = $LevelObjects/SwingThing.rotation_degrees.x
 	
 	# print([a, last_a, max_angle, target_max_angle, next_max_angle, sign_a ])
 
