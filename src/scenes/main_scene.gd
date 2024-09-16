@@ -51,8 +51,13 @@ func _process(delta: float) -> void:
 
 func on_player_jumped():
 	color = "#fff"
+	
+	$MainOverlay/Hint1Label.hide()
+	$MainOverlay/Hint2Label.show()
 
 func on_player_success():
+	$MainOverlay/Hint2Label.hide()
+	
 	var player_character = $MainLevel/LevelObjects/PlayerCharacter
 	
 	if player_character.max_height > best_height:
@@ -63,6 +68,8 @@ func on_player_success():
 	$Timer.start()
 
 func on_player_fail():
+	$MainOverlay/Hint2Label.hide()
+	
 	color = "#f00"
 	$Timer.start()
 

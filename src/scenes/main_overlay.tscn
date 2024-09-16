@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://capvormlsb805"]
+[gd_scene load_steps=3 format=3 uid="uid://capvormlsb805"]
 
 [ext_resource type="Theme" uid="uid://b50o7g3nh6tdu" path="res://themes/theme_1.tres" id="1_nk638"]
+[ext_resource type="Theme" uid="uid://d3oidgurfpmw7" path="res://themes/theme_2.tres" id="3_jsj2y"]
 
 [node name="MainOverlay" type="Control"]
 layout_mode = 3
@@ -35,9 +36,61 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -387.0
-offset_top = -69.0
+offset_top = -126.0
 offset_right = 387.0
 grow_horizontal = 2
 grow_vertical = 0
 bbcode_enabled = true
-text = "[center]Press a key to restart.[/center]"
+text = "
+[center]Press the Button to play again.[/center]"
+
+[node name="Hint1Label" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -574.0
+offset_top = -123.0
+offset_right = 575.0
+grow_horizontal = 2
+grow_vertical = 0
+bbcode_enabled = true
+text = "[center]Hold the Button at the right time to accelerate.
+Press the Button to jump.[/center]"
+
+[node name="Hint2Label" type="RichTextLabel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -574.0
+offset_top = -123.0
+offset_right = 575.0
+grow_horizontal = 2
+grow_vertical = 0
+bbcode_enabled = true
+text = "
+[center]Smash the Button to correct your course![/center]"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+modulate = Color(1, 1, 1, 0.376471)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -323.0
+offset_top = -20.0
+offset_right = -3.0
+offset_bottom = -3.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("3_jsj2y")
+bbcode_enabled = true
+text = "[right]MiniSwing by gheja, 2024, for Mini Jam 167[/right]"

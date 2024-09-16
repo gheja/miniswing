@@ -96,6 +96,8 @@ func process_free(delta: float):
 	if a:
 		is_finished = true
 		
+		target_rotation = Vector3.ZERO
+		
 		if abs(rotation_degrees.x) < SUCCESS_AMOUNT:
 			Signals.emit_signal("player_success")
 		else:
