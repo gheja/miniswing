@@ -1288,3 +1288,6 @@ parameters/Blend2/blend_amount = 0.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0957522, 0.0171342)
 shape = SubResource("CapsuleShape3D_vq4ys")
 disabled = true
+
+[node name="HeightMeasurementPoint" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.423178, 0)

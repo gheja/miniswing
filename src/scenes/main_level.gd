@@ -7,6 +7,9 @@ const STATE_SUCCESS = 3
 
 @onready var player_character = $LevelObjects/PlayerCharacter
 
+# to prevent accidental jumps
+var input_enabled = false
+
 const SLOW_DOWN_AMOUNT_PER_SEC = 0.2
 const HEIGHT_INCREASE_PER_SEC = 50.0
 const SWING_MULTIPLIER = 1.5
@@ -59,14 +62,14 @@ func _process(delta: float) -> void:
 func process_swinging(delta: float):
 	var sign_a = sign(a - last_a)
 
-	if Input.get_action_strength("action_go") > 0.5:
+	if input_enabled and Input.get_action_strength("action_go") > 0.5:
 		next_max_angle += HEIGHT_INCREASE_PER_SEC * delta * sign_a
 		player_character.set_target_anim(player_character.ANIM_SIT_FORWARD)
 		press_length += delta
 	else:
 		player_character.set_target_anim(player_character.ANIM_SIT_BACKWARD)
 	
-	if Input.is_action_just_released("action_go"):
+	if input_enabled and Input.is_action_just_released("action_go"):
 		if press_length < 0.15:
 			player_character.set_target_anim(player_character.ANIM_FALLING)
 			player_character.start_falling()
@@ -79,6 +82,8 @@ func process_swinging(delta: float):
 			Engine.time_scale = 0.33
 			
 			$DirectionalLight3D2.light_energy = 1.0
+			
+			Signals.emit_signal("player_jumped")
 		
 		press_length = 0.0
 	
@@ -94,15 +99,22 @@ func process_falling(delta: float):
 	if Input.is_action_just_released("action_go"):
 		if press_length < 0.15:
 			player_character.correct_course()
+		
+		press_length = 0.0
 
 func on_player_success():
-	Engine.time_scale = 1.0
-	# $DirectionalLight3D2.light_energy = 0.0
-	$DirectionalLight3D2.light_color = Color(0, 1.0, 0)
 	state = STATE_SUCCESS
+	
+	Engine.time_scale = 1.0
+	$DirectionalLight3D2.light_color = Color(0, 1.0, 0)
+	player_character.set_target_anim(player_character.ANIM_HAPPY)
 
 func on_player_fail():
-	Engine.time_scale = 1.0
-	# $DirectionalLight3D2.light_energy = 0.0
-	$DirectionalLight3D2.light_color = Color(1.0, 0, 0)
 	state = STATE_FAIL
+	
+	Engine.time_scale = 1.0
+	$DirectionalLight3D2.light_color = Color(1.0, 0, 0)
+	player_character.set_target_anim(player_character.ANIM_FACEPLANT)
+
+func _on_timer_timeout() -> void:
+	input_enabled = true

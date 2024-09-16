@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://d26dlm0csx724"]
+
+[ext_resource type="Script" path="res://scenes/main_scene.gd" id="1_7oc3r"]
+[ext_resource type="PackedScene" uid="uid://dx6255pcyc4ck" path="res://scenes/main_level.tscn" id="1_bgn1t"]
+[ext_resource type="PackedScene" uid="uid://capvormlsb805" path="res://scenes/main_overlay.tscn" id="2_adtp5"]
+
+[node name="MainScene" type="Node"]
+script = ExtResource("1_7oc3r")
+
+[node name="MainLevel" parent="." instance=ExtResource("1_bgn1t")]
+
+[node name="MainOverlay" parent="." instance=ExtResource("2_adtp5")]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
