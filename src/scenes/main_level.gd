@@ -24,6 +24,9 @@ func _ready() -> void:
 	max_angle = 50.0
 	next_max_angle = max_angle
 	target_max_angle = max_angle
+	
+	Signals.connect("player_success", on_player_success)
+	Signals.connect("player_fail", on_player_fail)
 
 var a = 0.0
 var last_a = 0
@@ -47,7 +50,9 @@ func _process(delta: float) -> void:
 	if state == STATE_SWINGING:
 		process_swinging(delta)
 	elif state == STATE_FALLING:
-		pass
+		process_falling(delta)
+	
+	$Camera3D.look_at($LevelObjects/PlayerCharacter/CameraMarker.global_position)
 	
 	last_a = a
 
@@ -72,12 +77,32 @@ func process_swinging(delta: float):
 			
 			# some bullett time to give a bit more time to react
 			Engine.time_scale = 0.33
+			
+			$DirectionalLight3D2.light_energy = 1.0
 		
 		press_length = 0.0
 	
 	player_character.global_position = $LevelObjects/SwingThing/PivotStart/Construct/Marker3D.global_position
 	player_character.rotation_degrees.x = $LevelObjects/SwingThing.rotation_degrees.x
 	
-	$Camera3D.look_at($LevelObjects/PlayerCharacter/CameraMarker.global_position)
-	
 	# print([a, last_a, max_angle, target_max_angle, next_max_angle, sign_a ])
+
+func process_falling(delta: float):
+	if Input.get_action_strength("action_go") > 0.5:
+		press_length += delta
+	
+	if Input.is_action_just_released("action_go"):
+		if press_length < 0.15:
+			player_character.correct_course()
+
+func on_player_success():
+	Engine.time_scale = 1.0
+	# $DirectionalLight3D2.light_energy = 0.0
+	$DirectionalLight3D2.light_color = Color(0, 1.0, 0)
+	state = STATE_SUCCESS
+
+func on_player_fail():
+	Engine.time_scale = 1.0
+	# $DirectionalLight3D2.light_energy = 0.0
+	$DirectionalLight3D2.light_color = Color(1.0, 0, 0)
+	state = STATE_FAIL
