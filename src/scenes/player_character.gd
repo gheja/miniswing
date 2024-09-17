@@ -10,7 +10,7 @@ var is_free = false
 var is_finished = false
 
 const CORRECTION_AMOUNT = 5.0
-const SUCCESS_AMOUNT = 10.0
+const SUCCESS_AMOUNT = 5.0
 
 const ANIM_SIT_BACKWARD = 0
 const ANIM_SIT_FORWARD = 1
