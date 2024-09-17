@@ -3,6 +3,7 @@ extends Node
 var color = "#888"
 var best_height = 0.0
 var press_restart = false
+var player_already_won = false
 
 func saveConfig():
 	var config = ConfigFile.new()
@@ -37,6 +38,7 @@ func _ready():
 	Signals.connect("player_jumped", on_player_jumped)
 	Signals.connect("player_success", on_player_success)
 	Signals.connect("player_fail", on_player_fail)
+	Signals.connect("player_hit_by_swing", on_player_hit_by_swing)
 	
 	prepareConfig()
 	loadConfig()
@@ -56,6 +58,8 @@ func on_player_jumped():
 	$MainOverlay/Hint2Label.show()
 
 func on_player_success():
+	player_already_won = true
+	
 	$MainOverlay/Hint2Label.hide()
 	
 	var player_character = $MainLevel/LevelObjects/PlayerCharacter
@@ -69,6 +73,9 @@ func on_player_success():
 	$Timer2.start()
 
 func on_player_fail():
+	if player_already_won:
+		return
+	
 	$MainOverlay/Hint2Label.hide()
 	
 	color = "#f00"
@@ -82,3 +89,6 @@ func _on_timer_2_timeout() -> void:
 	press_restart = true
 	
 	$MainOverlay/CreditsContainer.visible = true
+
+func on_player_hit_by_swing():
+	$MainOverlay/StillCountsContainer.visible = true

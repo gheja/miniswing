@@ -1165,6 +1165,7 @@ radius = 0.105041
 height = 1.13894
 
 [node name="PlayerCharacter" type="CharacterBody3D"]
+collision_mask = 3
 script = ExtResource("1_6xs6r")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]

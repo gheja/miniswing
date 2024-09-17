@@ -86,6 +86,15 @@ func do_move(delta: float):
 	
 	return self.move_and_collide(speed * delta)
 
+func do_success():
+	Signals.emit_signal("player_success")
+
+func do_fail():
+	$CollisionShape3DNormal.disabled = true
+	$CollisionShape3DFaceplant.disabled = false
+	
+	Signals.emit_signal("player_fail")
+
 func process_swinging(delta: float):
 	last_speed = (global_position - last_position) * (1/delta)
 	last_position = global_position
@@ -101,13 +110,12 @@ func process_free(delta: float):
 	if do_move(delta):
 		is_finished = true
 		
+		Signals.emit_signal("player_landed")
+		
 		if abs(rotation_degrees.x) < SUCCESS_AMOUNT:
-			Signals.emit_signal("player_success")
+			do_success()
 		else:
-			$CollisionShape3DNormal.disabled = true
-			$CollisionShape3DFaceplant.disabled = false
-			
-			Signals.emit_signal("player_fail")
+			do_fail()
 		
 		# snap to upright
 		target_rotation = Vector3.ZERO
@@ -117,4 +125,12 @@ func process_free(delta: float):
 
 func process_finished(delta: float):
 	do_rotation(delta)
-	do_move(delta)
+	var collisions = do_move(delta)
+	
+	if collisions:
+		for i in range(0, collisions.get_collision_count()):
+			var a = collisions.get_collider(i) as StaticBody3D
+			
+			if a.name == "SwingThing":
+				do_fail()
+				Signals.emit_signal("player_hit_by_swing")

@@ -1,9 +1,48 @@
-[gd_scene load_steps=5 format=3 uid="uid://capvormlsb805"]
+[gd_scene load_steps=8 format=3 uid="uid://capvormlsb805"]
 
 [ext_resource type="Theme" uid="uid://b50o7g3nh6tdu" path="res://themes/theme_1.tres" id="1_nk638"]
 [ext_resource type="Theme" uid="uid://d3oidgurfpmw7" path="res://themes/theme_2.tres" id="3_jsj2y"]
 [ext_resource type="Theme" uid="uid://blyuydcmw3c8j" path="res://themes/theme_big.tres" id="3_oyusv"]
 [ext_resource type="Theme" uid="uid://5008vvw8vwqy" path="res://themes/theme_middle.tres" id="4_v2354"]
+
+[sub_resource type="Animation" id="Animation_l4uk5"]
+resource_name = "idle"
+length = 0.6
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StillCountsContainer:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.501961), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_fn0ta"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StillCountsContainer:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p1a11"]
+_data = {
+"RESET": SubResource("Animation_fn0ta"),
+"idle": SubResource("Animation_l4uk5")
+}
 
 [node name="MainOverlay" type="Control"]
 layout_mode = 3
@@ -155,3 +194,63 @@ Music:
 Sounds (freesound.org):
     mglennsound, aglinder, florianreichelt,
     Garuda1982, Vrymaa, mglennsound"
+
+[node name="StillCountsContainer" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -276.0
+offset_top = -60.0
+offset_right = 276.0
+offset_bottom = 28.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LabelMagenta" type="RichTextLabel" parent="StillCountsContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2.0
+offset_right = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_oyusv")
+bbcode_enabled = true
+text = "[center][color=9124aa]STILL COUNTS![/color][/center]"
+
+[node name="LabelCyan" type="RichTextLabel" parent="StillCountsContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 2.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_oyusv")
+bbcode_enabled = true
+text = "[center][color=30beac]STILL COUNTS![/color][/center]"
+
+[node name="LabelWhite" type="RichTextLabel" parent="StillCountsContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_oyusv")
+bbcode_enabled = true
+text = "[center]STILL COUNTS![/center]"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_p1a11")
+}
+autoplay = "idle"
