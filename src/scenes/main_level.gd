@@ -109,12 +109,12 @@ func process_audio():
 	pitch = 0.6 + pitch * 0.6
 	
 	# swinging forward
-	if last_a + 10 < 0 and a + 10 > 0:
+	if last_a < -10.0 and a > -10.0:
 		AudioManager.play_sound(1, pitch, pitch)
-		print(pitch)
+		# print(pitch)
 	
 	# swinging backward
-	if last_a - 10 > 0 and a - 10 < 0:
+	if last_a > 10.0 and a < 10.0:
 		AudioManager.play_sound(0, pitch * 0.8, pitch * 0.8)
 
 func process_falling(delta: float):
