@@ -2,8 +2,7 @@
 
 [ext_resource type="Material" uid="uid://lsj8q4luc5j0" path="res://materials/dark_purple.tres" id="1_qfho1"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_1b7yh"]
-size = Vector3(20, 1, 20)
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_qmd2n"]
 
 [node name="Ground" type="StaticBody3D"]
 
@@ -13,5 +12,5 @@ size = Vector3(20, 0.2, 20)
 material = ExtResource("1_qfho1")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-shape = SubResource("BoxShape3D_1b7yh")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00578925, 0)
+shape = SubResource("WorldBoundaryShape3D_qmd2n")
