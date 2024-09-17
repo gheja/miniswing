@@ -149,7 +149,7 @@ func on_player_success():
 	
 	AudioManager.set_music_pitch_target(1.0)
 	AudioManager.play_sound(4)
-
+	
 func on_player_fail():
 	state = STATE_FAIL
 	
