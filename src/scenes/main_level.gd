@@ -126,6 +126,8 @@ func process_falling(delta: float):
 			if player_character.target_rotation.x != 0.0:
 				player_character.correct_course()
 				
+				# this sound will only be played when the palyer character is totally upright but
+				# the jump will succeed even when it is a bit off of that
 				if player_character.target_rotation.x == 0.0:
 					AudioManager.play_sound(3)
 				else:
