@@ -28,6 +28,8 @@ func _ready() -> void:
 	next_max_angle = max_angle
 	target_max_angle = max_angle
 	
+	AudioManager.set_music_pitch_target(1.0)
+	
 	Signals.connect("player_success", on_player_success)
 	Signals.connect("player_fail", on_player_fail)
 
@@ -88,6 +90,7 @@ func process_swinging(delta: float):
 			$AnimationPlayer.play("finish")
 			
 			Signals.emit_signal("player_jumped")
+			AudioManager.set_music_pitch_target(0.75)
 		
 		press_length = 0.0
 	
@@ -139,6 +142,7 @@ func on_player_success():
 	$DirectionalLight3D2.light_color = Color(0, 1.0, 0)
 	player_character.set_target_anim(player_character.ANIM_HAPPY)
 	
+	AudioManager.set_music_pitch_target(1.0)
 	AudioManager.play_sound(4)
 
 func on_player_fail():
@@ -148,6 +152,7 @@ func on_player_fail():
 	$DirectionalLight3D2.light_color = Color(1.0, 0, 0)
 	player_character.set_target_anim(player_character.ANIM_FACEPLANT)
 	
+	AudioManager.set_music_pitch_target(1.0)
 	AudioManager.play_sound(5)
 
 func _on_timer_timeout() -> void:
