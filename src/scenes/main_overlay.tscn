@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://capvormlsb805"]
+[gd_scene load_steps=5 format=3 uid="uid://capvormlsb805"]
 
 [ext_resource type="Theme" uid="uid://b50o7g3nh6tdu" path="res://themes/theme_1.tres" id="1_nk638"]
 [ext_resource type="Theme" uid="uid://d3oidgurfpmw7" path="res://themes/theme_2.tres" id="3_jsj2y"]
+[ext_resource type="Theme" uid="uid://blyuydcmw3c8j" path="res://themes/theme_big.tres" id="3_oyusv"]
+[ext_resource type="Theme" uid="uid://5008vvw8vwqy" path="res://themes/theme_middle.tres" id="4_v2354"]
 
 [node name="MainOverlay" type="Control"]
 layout_mode = 3
@@ -94,3 +96,62 @@ grow_vertical = 0
 theme = ExtResource("3_jsj2y")
 bbcode_enabled = true
 text = "[right]MiniSwing by gheja, 2024, for Mini Jam 167[/right]"
+
+[node name="CreditsContainer" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 0
+offset_left = 56.0
+offset_top = 40.0
+offset_right = 771.0
+offset_bottom = 623.0
+
+[node name="TitleLabel2" type="RichTextLabel" parent="CreditsContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 4.0
+offset_bottom = -453.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_oyusv")
+bbcode_enabled = true
+text = "[color=9124aa]MiniSwing[/color]"
+scroll_active = false
+
+[node name="TitleLabel1" type="RichTextLabel" parent="CreditsContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -477.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_oyusv")
+bbcode_enabled = true
+text = "MiniSwing"
+scroll_active = false
+
+[node name="CreditsLabel" type="RichTextLabel" parent="CreditsContainer"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 100.0
+offset_bottom = 513.0
+grow_horizontal = 2
+theme = ExtResource("4_v2354")
+bbcode_enabled = true
+text = "A game for Mini Jam 167
+
+Code, graphics, models:
+    Gabor Heja (gheja)
+
+Music:
+    Kevin MacLeod (incompetech.com)
+
+Sounds (freesound.org):
+    mglennsound, aglinder, florianreichelt,
+    Garuda1982, Vrymaa, mglennsound"

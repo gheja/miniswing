@@ -66,14 +66,19 @@ func on_player_success():
 	
 	color = "#0f0"
 	$Timer.start()
+	$Timer2.start()
 
 func on_player_fail():
 	$MainOverlay/Hint2Label.hide()
 	
 	color = "#f00"
 	$Timer.start()
+	$Timer2.start()
 
 func _on_timer_timeout() -> void:
+	$MainOverlay/RestartLabel.visible = true
+
+func _on_timer_2_timeout() -> void:
 	press_restart = true
 	
-	$MainOverlay/RestartLabel.visible = true
+	$MainOverlay/CreditsContainer.visible = true

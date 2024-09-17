@@ -12,7 +12,12 @@ script = ExtResource("1_7oc3r")
 [node name="MainOverlay" parent="." instance=ExtResource("2_adtp5")]
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 3.5
+one_shot = true
+
+[node name="Timer2" type="Timer" parent="."]
+wait_time = 2.5
 one_shot = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]
