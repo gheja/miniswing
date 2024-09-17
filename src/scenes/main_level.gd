@@ -56,6 +56,8 @@ func _process(delta: float) -> void:
 		process_swinging(delta)
 	elif state == STATE_FALLING:
 		process_falling(delta)
+	if state == STATE_SUCCESS or state == STATE_FAIL:
+		process_finished(delta)
 	
 	$CameraContainer/Camera3D.look_at($LevelObjects/PlayerCharacter/CameraMarker.global_position)
 	
@@ -86,8 +88,6 @@ func process_swinging(delta: float):
 			Engine.time_scale = 0.33
 			
 			$DirectionalLight3D2.light_energy = 1.0
-			
-			$AnimationPlayer.play("finish")
 			
 			Signals.emit_signal("player_jumped")
 			AudioManager.set_music_pitch_target(0.75)
@@ -134,6 +134,9 @@ func process_falling(delta: float):
 					AudioManager.play_sound(2, pitch, pitch)
 			
 		press_length = 0.0
+
+func process_finished(_delta: float):
+	$CameraContainer/Camera3D.global_position = lerp($CameraContainer/Camera3D.global_position, $LevelObjects/PlayerCharacter/FinalCameraPositionMarker.global_position, 0.01)
 
 func on_player_success():
 	state = STATE_SUCCESS

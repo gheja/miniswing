@@ -1297,3 +1297,6 @@ disabled = true
 
 [node name="HeightMeasurementPoint" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.423178, 0)
+
+[node name="FinalCameraPositionMarker" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.991972, 0.520401, -2.19106)
