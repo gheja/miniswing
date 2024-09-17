@@ -75,36 +75,46 @@ func _process(delta: float) -> void:
 	
 	# print([ rotation_degrees, $HeightMeasurementPoint.global_position ])
 
+func do_rotation(_delta: float):
+	rotation_degrees = lerp(rotation_degrees, target_rotation, 0.3)
+
+func do_move(delta: float):
+	speed += GRAVITY * delta * 0.6
+	
+	if self.is_on_floor():
+		speed = Vector3.ZERO
+	
+	return self.move_and_collide(speed * delta)
+
 func process_swinging(delta: float):
 	last_speed = (global_position - last_position) * (1/delta)
 	last_position = global_position
 	max_height = $HeightMeasurementPoint.global_position.y
 
 func process_free(delta: float):
-	rotation_degrees = lerp(rotation_degrees, target_rotation, 0.2)
+	# rotation_degrees = lerp(rotation_degrees, target_rotation, 0.2)
+	rotation_degrees = lerp(rotation_degrees, target_rotation, 0.3)
 	
 	if max_height < $HeightMeasurementPoint.global_position.y:
 		max_height = $HeightMeasurementPoint.global_position.y
 	
-	speed += GRAVITY * delta * 0.6
-	
-	if self.is_on_floor():
-		speed = Vector3.ZERO
-	
-	var a = self.move_and_collide(speed * delta)
-	
-	if a:
+	if do_move(delta):
 		is_finished = true
-		
-		target_rotation = Vector3.ZERO
 		
 		if abs(rotation_degrees.x) < SUCCESS_AMOUNT:
 			Signals.emit_signal("player_success")
 		else:
+			$CollisionShape3DNormal.disabled = true
+			$CollisionShape3DFaceplant.disabled = false
+			
 			Signals.emit_signal("player_fail")
+		
+		# snap to upright
+		target_rotation = Vector3.ZERO
 	else:
 		if abs(rotation_degrees.x) < SUCCESS_AMOUNT:
 			set_target_anim(ANIM_SUCCESS)
 
 func process_finished(delta: float):
-	return
+	do_rotation(delta)
+	do_move(delta)
