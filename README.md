@@ -2,12 +2,12 @@
 
 # MiniSwing
 
-Now with deluxe features such as music, sounds, an even bigger swing, the same frustration!
+Now with deluxe features like music, sounds, an extended swing, the same frustration!
 
 Originally made for [Mini Jam 167](https://itch.io/jam/mini-jam-167-cyber) in the final 6 hours, the deluxe edition contains 4 more hours of work.
 
+Play it here: https://gheja.itch.io/miniswing-latest
 
-![MiniSwing jam version](cover_jam_630x500.jpg)
 
 # MiniSwing (jam version)
 
