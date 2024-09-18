@@ -87,7 +87,7 @@ func process_swinging(delta: float):
 			# some bullett time to give a bit more time to react
 			Engine.time_scale = 0.33
 			
-			$DirectionalLight3D2.light_energy = 1.0
+			$DirectionalLight3D2.light_energy = 1.25
 			
 			Signals.emit_signal("player_jumped")
 			AudioManager.set_music_pitch_target(0.75)
