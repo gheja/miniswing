@@ -18,6 +18,11 @@ var volume_overrides = [
 	1.0, 1.0, 1.0, 1.25
 ]
 
+# due to a possible bug in the web calling play() resets the pitch so pitch shift
+# should be set up after play() is called (with call_deferred())
+func set_player_pitch(player: AudioStreamPlayer, pitch: float):
+	player.pitch_scale = pitch
+
 func play_sound(index, pitch_shift_min: float = 1.0, pitch_shift_max: float = 1.0, volume_multiplier: float = 1.0):
 	var tmp = AudioStreamPlayer.new()
 	tmp.stream = sounds[index]
@@ -28,12 +33,12 @@ func play_sound(index, pitch_shift_min: float = 1.0, pitch_shift_max: float = 1.
 	else:
 		tmp.volume_db = linear_to_db(1.0 * volume_multiplier)
 	
-	if pitch_shift_min != 1.0 or pitch_shift_max != 1.0:
-		tmp.pitch_scale = randf_range(pitch_shift_min, pitch_shift_max)
-	
 	get_tree().root.call_deferred("add_child", tmp)
 	
 	tmp.play.call_deferred()
+	
+	if pitch_shift_min != 1.0 or pitch_shift_max != 1.0:
+		set_player_pitch.call_deferred(tmp, randf_range(pitch_shift_min, pitch_shift_max))
 
 func _ready():
 	main_music_player = AudioStreamPlayer.new()
