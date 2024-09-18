@@ -5,6 +5,8 @@ var best_height = 0.0
 var press_restart = false
 var player_already_won = false
 
+@onready var player_character = $MainLevel/LevelObjects/PlayerCharacter
+
 func saveConfig():
 	var config = ConfigFile.new()
 	
@@ -44,7 +46,6 @@ func _ready():
 	loadConfig()
 
 func _process(delta: float) -> void:
-	var player_character = $MainLevel/LevelObjects/PlayerCharacter
 	$MainOverlay/RichTextLabel.text = "[right][color=" + color + "]Height: " + format_height(player_character.max_height) + " meters[/color]\nBest: " + format_height(best_height) + " meters[/right]"
 	
 	if press_restart:
@@ -61,8 +62,6 @@ func on_player_success():
 	player_already_won = true
 	
 	$MainOverlay/Hint2Label.hide()
-	
-	var player_character = $MainLevel/LevelObjects/PlayerCharacter
 	
 	if player_character.max_height > best_height:
 		best_height = player_character.max_height
