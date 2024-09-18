@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://capvormlsb805"]
+[gd_scene load_steps=7 format=3 uid="uid://capvormlsb805"]
 
 [ext_resource type="Theme" uid="uid://b50o7g3nh6tdu" path="res://themes/theme_1.tres" id="1_nk638"]
-[ext_resource type="Theme" uid="uid://d3oidgurfpmw7" path="res://themes/theme_2.tres" id="3_jsj2y"]
 [ext_resource type="Theme" uid="uid://blyuydcmw3c8j" path="res://themes/theme_big.tres" id="3_oyusv"]
 [ext_resource type="Theme" uid="uid://5008vvw8vwqy" path="res://themes/theme_middle.tres" id="4_v2354"]
 
@@ -58,10 +57,9 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -782.0
-offset_top = 8.0
-offset_right = -8.0
-offset_bottom = 177.0
+offset_left = -784.0
+offset_right = -10.0
+offset_bottom = 169.0
 grow_horizontal = 0
 bbcode_enabled = true
 text = "[right]Height: 0.0 meters
@@ -118,24 +116,6 @@ bbcode_enabled = true
 text = "
 [center]Smash the Button to correct your course![/center]"
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="."]
-modulate = Color(1, 1, 1, 0.376471)
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -323.0
-offset_top = -20.0
-offset_right = -3.0
-offset_bottom = -3.0
-grow_horizontal = 0
-grow_vertical = 0
-theme = ExtResource("3_jsj2y")
-bbcode_enabled = true
-text = "[right]MiniSwing by gheja, 2024, for Mini Jam 167[/right]"
-
 [node name="CreditsContainer" type="Control" parent="."]
 visible = false
 layout_mode = 1
@@ -183,7 +163,7 @@ offset_bottom = 513.0
 grow_horizontal = 2
 theme = ExtResource("4_v2354")
 bbcode_enabled = true
-text = "A game for Mini Jam 167
+text = "A game originally made for Mini Jam 167, 2024
 
 Code, graphics, models:
     Gabor Heja (gheja)
@@ -191,7 +171,7 @@ Code, graphics, models:
 Music:
     Kevin MacLeod (incompetech.com)
 
-Sounds (freesound.org):
+Sounds (via freesound.org):
     mglennsound, aglinder, florianreichelt,
     Garuda1982, Vrymaa, mglennsound"
 
